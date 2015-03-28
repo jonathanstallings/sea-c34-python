@@ -5,6 +5,6 @@ def safe_input(prompt):
     """Return 'None' rather than EOF or KeyboardInterrupt exceptions"""
     try:
         raw_input(prompt)
-    except EOFError or KeyboardInterrupt:
+    except (EOFError, KeyboardInterrupt):
         return 'None'
 
