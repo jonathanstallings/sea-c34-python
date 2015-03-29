@@ -10,11 +10,12 @@ def validate_donation(donation):
         float(donation)
     except ValueError:
         return False
-    if donation <= 0:
-        print(u"Amounts must be greater than $0\n")
-        return False
     else:
-        return True
+        if float(donation) <= 0:
+            print(u"Amounts must be greater than $0\n")
+            return False
+        else:
+            return True
 
 
 def add_donation(donor, donation):
@@ -31,7 +32,7 @@ def add_donation(donor, donation):
 
 def thank_you_message(donor, donation):
     """Compose message to donor thanking them for the donation"""
-    message = u"Some text with {donor} {donation}" \
+    message = u"Some text with {donor} {donation}." \
         .format(donor=donor, donation=donation)
     return message
 
@@ -53,38 +54,48 @@ def show_report():
     print new_line
 
 
-donors = {}
-# Add some donor history here.
+donors = {
+    "Abigail Simmons": [50.00, 75.00, 25.00],
+    "Bruce Thompson": [20.00, 200.00],
+    "Chase Riley": [45.00, 10.00, 10.00, 20.00],
+    "Darlene Staley": [2000.00],
+    "Edgar Mason": [1500.00, 400.00]
+}
 
 
 if __name__ == '__main__':
 
     while True:
         main_prompt = raw_input(
-            u"[1] Send a Thank You\n [2] Create a Report\n[Q]uit]\n)".lower()
+            u"\n[1] Send a Thank You\n[2] Create a Report\n[Q]uit\n\n>"
         )
 
-        if main_prompt == u"q":
+        if main_prompt.lower() == u"q":
             break
 
         elif main_prompt == u"1":
             while True:
-                donor = raw_input(u"Type the name of the donor:\n[C]ancel") \
-                    .lower()
-                if donor == u"c":
+                donor = raw_input(
+                    u"\nType the name of the donor:\n[C]ancel\n\n>"
+                )
+                if donor == u"list":
+                    for donor in donors.keys():
+                        print donor
+                elif donor.lower() == u"c":
                     break
                 else:
                     while True:
                         donation = raw_input(
-                            u"How much did {donor} donate?".format(donor=donor)
+                            u"\nHow much did {donor} donate?\n\n>"
+                            .format(donor=donor)
                         )
                         if validate_donation(donation):
                             break
 
-            add_donation(donor, donation)
+                    add_donation(donor, donation)
 
-            print(thank_you_message(donor, donation))
-            break
+                    print(thank_you_message(donor, donation))
+                    break
 
         elif main_prompt == u"2":
             show_report()
