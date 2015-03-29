@@ -1,7 +1,10 @@
+from __future__ import print_function
+
+
 def list_donors():
     """Print the current donor list"""
     for donor in donors:
-        print donor
+        print(donor)
 
 
 def validate_donation(donation):
@@ -11,11 +14,12 @@ def validate_donation(donation):
     except ValueError:
         return False
     else:
-        if float(donation) <= 0:
+        float(donation)
+        if donation <= 0:
             print(u"Amounts must be greater than $0\n")
             return False
         else:
-            return True
+            return donation
 
 
 def add_donation(donor, donation):
@@ -27,7 +31,7 @@ def add_donation(donor, donation):
     if donor in donors:
         donors[donor] += donation
     else:
-        donors[donor] = donation
+        donors[donor] = [donation]
 
 
 def thank_you_message(donor, donation):
@@ -38,20 +42,29 @@ def thank_you_message(donor, donation):
 
 
 def show_report():
-    """Extract data from donor records and sort by total historical donations."""
+    """Display donor data sorted by total historical donations."""
     sorted_donors = []
 
     for donor in donors:
         total = sum(donors[donor])
         number = len(donors[donor])
         average = total / number
-        sorted_donors.append(donor, total, number, average)
+        sorted_donors.append([donor, total, number, average])
     sorted_donors.sort(key=lambda x: x[1], reverse=True)
 
-    print headers_for_report
+    print(
+        "{:22s} {:16s} {:20s} {:20s}\n".format(
+            "Name", "Total Donations", "Number of Donations",
+            "Average Donation"
+        )
+    )
     for i in sorted_donors:
-        print formatted_tabular_data(donor, total, number, average)
-    print new_line
+        print(
+            "{:22s} {:<16.2f} {:<20d} {:<20.2f}".format(
+                i[0], i[1], i[2], i[3]
+            )
+        )
+    print("\n\n")
 
 
 donors = {
@@ -80,7 +93,7 @@ if __name__ == '__main__':
                 )
                 if donor == u"list":
                     for donor in donors.keys():
-                        print donor
+                        print(donor)
                 elif donor.lower() == u"c":
                     break
                 else:
