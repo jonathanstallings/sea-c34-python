@@ -4,7 +4,7 @@ import json
 
 
 def list_donors():
-    """Print the current donor list"""
+    """Print the current donor list, sorted by name (simply)."""
     sorted_donors = []
     for donor in donors:
         sorted_donors.append(donor)
@@ -31,7 +31,7 @@ def is_invalid(donation):
 
 def add_donation(donor, donation):
     """
-    Add the new donation to the stored donors data.
+    Add the new donation to the stored donors json data file.
 
     If the donor exists, update recored; otherwise, add new donor info.
     """
@@ -76,11 +76,10 @@ def show_report():
     print("\n\n")
 
 
-with open('donors.json') as data_file:
-    donors = json.load(data_file)
-
-
 if __name__ == '__main__':
+
+    with open('donors.json') as data_file:
+        donors = json.load(data_file)
 
     while True:
         main_prompt = raw_input(
