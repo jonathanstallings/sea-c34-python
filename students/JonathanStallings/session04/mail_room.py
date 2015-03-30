@@ -97,9 +97,8 @@ if __name__ == '__main__':
     with open('donors.json') as data_file:
         donors = json.load(data_file)
 
-    print(logo)
-
     while True:
+        print(logo)
         main_prompt = raw_input(
             u"\n[1] Send a Thank You\n"
             "[2] Create a Report\n[Q]uit\n\n> "
@@ -136,3 +135,7 @@ if __name__ == '__main__':
 
         elif main_prompt == u"2":
             show_report()
+            response = raw_input(
+                u"\n[C]ontinue. . .\n\n> "
+            )
+            
