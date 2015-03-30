@@ -100,7 +100,7 @@ def show_report():
     )
     for i in sorted_donors:
         print(
-            "{:22s} {:<16.2f} {:<20d} {:<20.2f}".format(
+            "{:22s} {:<16,.2f} {:<20d} {:<20,.2f}".format(
                 i[0], i[1], i[2], i[3]
             )
         )
