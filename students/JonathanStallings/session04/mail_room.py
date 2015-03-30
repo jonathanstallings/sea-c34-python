@@ -110,7 +110,7 @@ if __name__ == '__main__':
         elif main_prompt == u"1":
             while True:
                 donor = raw_input(
-                    u"\nType the full name of the donor:\n"
+                    u"\nType the full name of the donor:\n\n"
                     "[L]ist or [C]ancel\n\n> "
                 )
                 if donor.lower() == u"l":
@@ -118,20 +118,26 @@ if __name__ == '__main__':
                 elif donor.lower() == u"c":
                     break
                 else:
-                    donation = raw_input(
-                        u"\nHow much did {donor} donate?\n\n> "
+                    response = raw_input(
+                        u"\nIs {donor} the correct name?\n\n"
+                        "[Y]es or [N]o\n\n> "
                         .format(donor=donor)
                     )
-                    while is_invalid(donation):
+                    if response.lower() == u"y":
                         donation = raw_input(
                             u"\nHow much did {donor} donate?\n\n> "
                             .format(donor=donor)
                         )
-                    donation = float(donation)
-                    add_donation(donor, donation)
+                        while is_invalid(donation):
+                            donation = raw_input(
+                                u"\nHow much did {donor} donate?\n\n> "
+                                .format(donor=donor)
+                            )
+                        donation = float(donation)
+                        add_donation(donor, donation)
 
-                    print(thank_you_message(donor, donation))
-                    break
+                        print(thank_you_message(donor, donation))
+                        break
 
         elif main_prompt == u"2":
             show_report()
