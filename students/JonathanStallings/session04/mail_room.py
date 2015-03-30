@@ -45,8 +45,13 @@ def add_donation(donor, donation):
 
 def thank_you_message(donor, donation):
     """Compose message to donor thanking them for the donation"""
-    message = u"Some text with {donor} {donation}." \
-        .format(donor=donor, donation=donation)
+    message = (
+        u"\n\nDear {},\n\nThank you for your generous donation of "
+        "${:.2f}. The Seattle chapter of the Pythonic Poetry Foundation "
+        "is made possible by the continued support of individuals like "
+        "you. \n\nSemper Py,\nPeter Pythonista\n"
+        .format(donor, donation)
+    )
     return message
 
 
@@ -83,7 +88,8 @@ if __name__ == '__main__':
 
     while True:
         main_prompt = raw_input(
-            u"\n[1] Send a Thank You\n[2] Create a Report\n[Q]uit\n\n> "
+            u"\n[1] Send a Thank You\n"
+            "[2] Create a Report\n[Q]uit\n\n> "
         )
 
         if main_prompt.lower() == u"q":
@@ -92,7 +98,8 @@ if __name__ == '__main__':
         elif main_prompt == u"1":
             while True:
                 donor = raw_input(
-                    u"\nType the name of the donor:\n[L]ist or [C]ancel\n\n> "
+                    u"\nType the full name of the donor:\n"
+                    "[L]ist or [C]ancel\n\n> "
                 )
                 if donor.lower() == u"l":
                     list_donors()
