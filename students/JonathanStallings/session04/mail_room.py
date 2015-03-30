@@ -2,6 +2,17 @@ from __future__ import print_function
 
 import json
 
+logo = (
+    "___  ___      _ _  ______                      \n"
+    "|  \/  |     (_) | | ___ \                     \n"
+    "| .  . | __ _ _| | | |_/ /___   ___  _ __ ___  \n"
+    "| |\/| |/ _` | | | |    // _ \ / _ \| '_ ` _ \ \n"
+    "| |  | | (_| | | | | |\ \ (_) | (_) | | | | | |\n"
+    "\_|  |_/\__,_|_|_| \_| \_\___/ \___/|_| |_| |_|\n"
+    "                                               \n"
+    "                                               \n"
+)
+
 
 def list_donors():
     """Print the current donor list, sorted by name (simply)."""
@@ -85,6 +96,8 @@ if __name__ == '__main__':
 
     with open('donors.json') as data_file:
         donors = json.load(data_file)
+
+    print(logo)
 
     while True:
         main_prompt = raw_input(
