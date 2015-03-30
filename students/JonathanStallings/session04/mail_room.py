@@ -133,6 +133,14 @@ if __name__ == '__main__':
                 elif donor.lower() == u"c":
                     break
                 else:
+                    if donor not in donors:
+                        print(
+                            u"\n\nDonor not in database.\n"
+                        )
+                    else:
+                        print(
+                            u"\nDonor in database.\n"
+                        )
                     response = raw_input(
                         u"\nIs {donor} the correct name?\n\n"
                         "[Y]es or [N]o\n\n> "
@@ -164,6 +172,6 @@ if __name__ == '__main__':
         elif main_prompt == u"2":
             show_report()
             response = raw_input(
-                u"\n[C]ontinue. . .\n\n> "
+                u"\n[C]ontinue\n\n> "
             )
             
