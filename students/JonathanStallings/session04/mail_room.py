@@ -62,7 +62,7 @@ def thank_you_message(donor, donation):
         u"\n\nDear {},\n\nThank you for your generous donation of "
         "${:.2f}. The Seattle chapter of the Pythonic Poetry Foundation "
         "is made possible by the continued support of individuals like "
-        "you. \n\nSemper Py,\nPeter Pythonista\n"
+        "you. \n\nSemper Py,\n\n\n\nPeter Pythonista\n"
         .format(donor, donation)
     )
     return message
@@ -158,6 +158,7 @@ if __name__ == '__main__':
                         )
                         if response.lower() == u"s":
                             save_to_file(message, donor)
+                            print(u"\nLetter saved.\n")
                         break
 
         elif main_prompt == u"2":
