@@ -1,12 +1,14 @@
 from __future__ import print_function
 
+import json
+
 
 def list_donors():
     """Print the current donor list"""
     sorted_donors = []
     for donor in donors:
         sorted_donors.append(donor)
-    sorted_donors.sort(key=str.lower)  # Only for ASCII !
+    sorted_donors.sort()
     print("\n")
     for donor in sorted_donors:
         print(donor)
@@ -37,6 +39,8 @@ def add_donation(donor, donation):
         donors[donor].append(donation)
     else:
         donors[donor] = [donation]
+    with open('donors.json', 'w') as outfile:
+        json.dump(donors, outfile)
 
 
 def thank_you_message(donor, donation):
@@ -72,13 +76,8 @@ def show_report():
     print("\n\n")
 
 
-donors = {
-    "Abigail Simmons": [50.00, 75.00, 25.00],
-    "Bruce Thompson": [20.00, 200.00],
-    "Chase Riley": [45.00, 10.00, 10.00, 20.00],
-    "Darlene Staley": [2000.00],
-    "Edgar Mason": [1500.00, 400.00]
-}
+with open('donors.json') as data_file:
+    donors = json.load(data_file)
 
 
 if __name__ == '__main__':
