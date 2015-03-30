@@ -3,7 +3,12 @@ from __future__ import print_function
 
 def list_donors():
     """Print the current donor list"""
+    sorted_donors = []
     for donor in donors:
+        sorted_donors.append(donor)
+    sorted_donors.sort(key=str.lower)  # Only for ASCII !
+    print("\n")
+    for donor in sorted_donors:
         print(donor)
 
 
@@ -92,8 +97,7 @@ if __name__ == '__main__':
                     u"\nType the name of the donor:\n[L]ist or [C]ancel\n\n> "
                 )
                 if donor.lower() == u"l":
-                    for donor in donors.keys():
-                        print(donor)
+                    list_donors()
                 elif donor.lower() == u"c":
                     break
                 else:
