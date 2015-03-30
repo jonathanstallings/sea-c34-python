@@ -137,6 +137,9 @@ if __name__ == '__main__':
                         add_donation(donor, donation)
 
                         print(thank_you_message(donor, donation))
+                        response = raw_input(
+                            u"\n[C]ontinue. . .\n\n> "
+                        )
                         break
 
         elif main_prompt == u"2":
