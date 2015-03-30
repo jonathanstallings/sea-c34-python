@@ -1,6 +1,8 @@
 from __future__ import print_function
-
+import os
+from pathlib import *
 import json
+
 
 logo = (
     "___  ___      _ _  ______                      \n"
@@ -64,6 +66,19 @@ def thank_you_message(donor, donation):
         .format(donor, donation)
     )
     return message
+
+
+def save_to_file(message, name, folder='./letters/'):
+    """Save given message to a text file in a folder."""
+    p = Path(folder)
+    if not p.exists():
+        os.mkdir(folder)
+
+    file_name = (
+        u"{path}thank_you_{name}.txt".format(path=folder, name=name)
+    )
+    with open(file_name, 'w') as outfile:
+        outfile.write(message)
 
 
 def show_report():
@@ -136,10 +151,13 @@ if __name__ == '__main__':
                         donation = float(donation)
                         add_donation(donor, donation)
 
-                        print(thank_you_message(donor, donation))
+                        message = thank_you_message(donor, donation)
+                        print(message)
                         response = raw_input(
-                            u"\n[C]ontinue. . .\n\n> "
+                            u"\n[C]ontinue or [S]ave to file\n\n> "
                         )
+                        if response.lower() == u"s":
+                            save_to_file(message, donor)
                         break
 
         elif main_prompt == u"2":
