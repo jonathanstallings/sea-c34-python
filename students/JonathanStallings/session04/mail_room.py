@@ -16,6 +16,16 @@ logo = (
 )
 
 
+def safe_input(prompt):
+    """Return 'None' rather than EOF or KeyboardInterrupt exceptions"""
+    try:
+        the_input = raw_input(prompt)
+    except (EOFError, KeyboardInterrupt):
+        return 'None'
+    else:
+        return the_input
+
+
 def list_donors():
     """Print the current donor list, sorted by name (simply)."""
     sorted_donors = []
@@ -140,7 +150,7 @@ if __name__ == '__main__':
 
     while True:
         print(logo)
-        main_prompt = raw_input(
+        main_prompt = safe_input(
             u"\n[1] Send a Thank You\n"
             "[2] Create a Report\n[Q]uit\n\n> "
         )
@@ -150,7 +160,7 @@ if __name__ == '__main__':
 
         elif main_prompt == u"1":
             while True:
-                donor = raw_input(
+                donor = safe_input(
                     u"\nType the full name of the donor:\n\n"
                     "[L]ist or [C]ancel\n\n> "
                 )
@@ -167,18 +177,18 @@ if __name__ == '__main__':
                         print(
                             u"\nDonor in database.\n"
                         )
-                    response = raw_input(
+                    response = safe_input(
                         u"\nIs {donor} the correct name?\n\n"
                         "[Y]es or [N]o\n\n> "
                         .format(donor=donor)
                     )
                     if response.lower() == u"y":
-                        donation = raw_input(
+                        donation = safe_input(
                             u"\nHow much did {donor} donate?\n\n> "
                             .format(donor=donor)
                         )
                         while is_invalid(donation):
-                            donation = raw_input(
+                            donation = safe_input(
                                 u"\nHow much did {donor} donate?\n\n> "
                                 .format(donor=donor)
                             )
@@ -187,7 +197,7 @@ if __name__ == '__main__':
 
                         message = thank_you_message(donor, donation)
                         print(message)
-                        response = raw_input(
+                        response = safe_input(
                             u"\n[C]ontinue or [S]ave to file\n\n> "
                         )
                         if response.lower() == u"s":
@@ -197,7 +207,7 @@ if __name__ == '__main__':
 
         elif main_prompt == u"2":
             show_report()
-            response = raw_input(
+            response = safe_input(
                 u"\n[C]ontinue\n\n> "
             )
 
