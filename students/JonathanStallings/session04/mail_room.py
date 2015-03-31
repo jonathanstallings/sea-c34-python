@@ -21,14 +21,21 @@ def list_donors():
     sorted_donors = []
     for donor in donors:
         sorted_donors.append(donor)
-    sorted_donors.sort()
+    sorted_donors.sort()  # Needs improvement.
     print("\n")
     for donor in sorted_donors:
         print(donor)
 
 
 def is_invalid(donation):
-    """Check if given donation is a valid number."""
+    """
+    Check if given donation is a valid number.
+
+    Args:
+        donation: the donation to be checked
+
+    Returns: True if invalid; else False
+    """
     try:
         float(donation)
     except ValueError:
@@ -47,6 +54,10 @@ def add_donation(donor, donation):
     Add the new donation to the stored donors json data file.
 
     If the donor exists, update recored; otherwise, add new donor info.
+
+    Args:
+        donor: the donor for whose record to update
+        donation: the new donation amount.
     """
     if donor in donors:
         donors[donor].append(donation)
@@ -57,7 +68,15 @@ def add_donation(donor, donation):
 
 
 def thank_you_message(donor, donation):
-    """Compose message to donor thanking them for the donation"""
+    """
+    Compose message to donor thanking them for the donation
+
+    Args:
+        donor: the donor for the composed message
+        donation: the most recent donation by donor
+
+    Returns: the composed messsage as formatted string
+    """
     message = (
         u"\n\nDear {},\n\nThank you for your generous donation of "
         "${:.2f}. The Seattle chapter of the Pythonic Poetry Foundation "
@@ -69,8 +88,15 @@ def thank_you_message(donor, donation):
 
 
 def save_to_file(message, name, folder='./letters/'):
-    """Save given message to a text file in a folder."""
-    p = Path(folder)
+    """
+    Save given message to a text file in a folder.
+
+    Args:
+        message: the message to save
+        name: the suffix of the file name
+        folder: the optional path to save file
+    """
+    p = pathlib.Path(folder)
     if not p.exists():
         os.mkdir(folder)
 
@@ -174,4 +200,4 @@ if __name__ == '__main__':
             response = raw_input(
                 u"\n[C]ontinue\n\n> "
             )
-            
+
