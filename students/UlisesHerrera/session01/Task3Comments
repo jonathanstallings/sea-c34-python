@@ -1,0 +1,29 @@
+Comments
+
+DeniseBarnes:
+
+While your some of your code (with proper commeting) will cause exceptions when we run 'break_me.py'; note that Task 3 requests that these exceptions happen when a function (written especifically for each exception) is called. But you've done about half the work required already, so you're almost there. Make these changes and I'll update your grade.
+
+
+In addition:
+
+Line 6: Please write a function that when called, will return an AttributeError.
+
+Line 10: This function does not return a NameError, it returns a SyntaxError.
+
+Line 15: This IS a NameError. But not because of line 14; Can you tell why?
+
+Remember: A function is a block of organized, reusable code that is used to perform a single, related action. And that action (function execution) can only happen by `calling` it.
+
+For example:
+
+
+# The next line of code defines a function.
+def my_function():
+    a = 1 + 2
+    print a
+
+# The next line `calls` my_function.
+my_function()
+
+
