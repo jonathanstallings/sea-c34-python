@@ -44,7 +44,7 @@ ind = int(raw_input("give me an index> "))
 print "you selected fruit number: %i, which is %s" % (ind, fruits[ind-1])
 
 print fruits
-fruits.insert('Kiwi', 0)
+fruits.insert(0, 'Kiwi')
 
 print fruits
 
