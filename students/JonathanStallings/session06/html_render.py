@@ -10,7 +10,7 @@ Python class example.
 
 
 class Element(object):
-    """An HTML element."""
+    """A base HTML element."""
     tag = u"html"
     indent = u"    "
 
@@ -22,17 +22,7 @@ class Element(object):
         self.children.append(content)
 
     def render(self, file_out, ind=u""):
-        """Render the element into HTML."""
-        # output = (
-        #     u"{indent}<{tag}>\n"
-        #     u"{indent}{content}\n"
-        #     u"{indent}</{tag}>"
-        #     .format(
-        #         indent=ind, tag=self.tag, content=self.content
-        #     )
-        # )
-        # file_out.write(output)
-        # print(output)
+        """Render the element and children into HTML."""
         file_out.write(
             u"{indent}<{tag}>\n".format(indent=ind, tag=self.tag)
         )
@@ -49,6 +39,25 @@ class Element(object):
         )
 
 
+class OneLineTag(Element):
+    """Override default rendering in favor of one-line output."""
+    def render(self, file_out, ind=u""):
+        file_out.write(
+            u"{indent}<{tag}>".format(indent=ind, tag=self.tag)
+        )
+        for child in self.children:
+            try:
+                child.render(file_out, "")
+            except AttributeError:
+                file_out.write(
+                    u"{indent}{child}"
+                    .format(indent="", child=unicode(child))
+                )
+        file_out.write(
+            u"{indent}</{tag}>\n".format(indent="", tag=self.tag)
+        )
+
+
 class Html(Element):
     header = u"<!DOCTYPE html>\n"
     tag = u"html"
@@ -56,6 +65,14 @@ class Html(Element):
     def render(self, file_out, ind=u""):
         file_out.write(self.header)
         Element.render(self, file_out, ind)
+
+
+class Head(Element):
+    tag = u"head"
+
+
+class Title(OneLineTag):
+    tag = u"title"
 
 
 class Body(Element):
