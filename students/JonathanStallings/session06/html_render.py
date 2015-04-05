@@ -15,6 +15,13 @@ class Element(object):
     indent = u"    "
 
     def __init__(self, content=None, **kwargs):  # Can't pass 'class' attr
+        """
+        Initialize an element with optional content and attributes.
+
+        Args:
+            content: string or element object to add
+            kwargs: the optional attributes for the element
+        """
         self.children = [content] if content else []
         self.attributes = kwargs
         self.attr = u""
@@ -22,11 +29,22 @@ class Element(object):
             self.attr += u' {k}="{v}"'.format(k=key, v=value)
 
     def append(self, content):
-        """Append content to element."""
+        """
+        Append content to element.
+
+        Args:
+            content: string or element object to append to element.
+        """
         self.children.append(content)
 
     def render(self, file_out, ind=u""):
-        """Render the element and children into HTML."""
+        """
+        Render the element and children into HTML.
+
+        Args:
+            file_out: the output file
+            ind: the element indent amount in spaces
+        """
         file_out.write(
             u"{indent}<{tag}{attr}>\n"
             .format(indent=ind, tag=self.tag, attr=self.attr)
@@ -78,6 +96,7 @@ class Html(Element):
     tag = u"html"
 
     def render(self, file_out, ind=u""):
+        """Override default rendering to add !DOCTYPE declaration."""
         file_out.write(self.header)
         Element.render(self, file_out, ind)
 
@@ -114,6 +133,7 @@ class A(OneLineTag):
     tag = u"a"
 
     def __init__(self, link, content=None, **kwargs):
+        """Override superclass init to accept link argument."""
         self.link = link
         Element.__init__(self, content, href=link, **kwargs)
 
@@ -128,8 +148,7 @@ class Li(Element):
 
 class H(OneLineTag):
     def __init__(self, level, content=None, **kwargs):
+        """Override superclass init to accept heading level argument."""
         self.tag = u"h{level}".format(level=level)
         Element.__init__(self, content, **kwargs)
 
-
-        
