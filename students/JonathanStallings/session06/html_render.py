@@ -45,8 +45,8 @@ class Element(object):
 
 
 class OneLineTag(Element):
-    """Override default rendering in favor of one-line output."""
     def render(self, file_out, ind=u""):
+        """Override default rendering in favor of one-line output."""
         file_out.write(
             u"{indent}<{tag}{attr}>"
             .format(indent=ind, tag=self.tag, attr=self.attr)
@@ -65,9 +65,8 @@ class OneLineTag(Element):
 
 
 class SelfClosingTag(Element):
-    """Override default rendering for self closing tags."""
     def render(self, file_out, ind=u""):
-        """Render the element and children into HTML."""
+        """Override default rendering for self closing tags."""
         file_out.write(
             u"{indent}<{tag}{attr} />\n"
             .format(indent=ind, tag=self.tag, attr=self.attr)
@@ -105,3 +104,12 @@ class Hr(SelfClosingTag):
 
 class Br(SelfClosingTag):
     tag = u"br"
+
+
+class A(OneLineTag):
+    tag = u"a"
+
+    def __init__(self, link, content, **kwargs):
+        self.link = link
+        Element.__init__(self, content, href=link, **kwargs)
+
