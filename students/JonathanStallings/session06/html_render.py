@@ -64,6 +64,16 @@ class OneLineTag(Element):
         )
 
 
+class SelfClosingTag(Element):
+    """Override default rendering for self closing tags."""
+    def render(self, file_out, ind=u""):
+        """Render the element and children into HTML."""
+        file_out.write(
+            u"{indent}<{tag}{attr} />\n"
+            .format(indent=ind, tag=self.tag, attr=self.attr)
+        )
+
+
 class Html(Element):
     header = u"<!DOCTYPE html>\n"
     tag = u"html"
@@ -87,3 +97,11 @@ class Body(Element):
 
 class P(Element):
     tag = u"p"
+
+
+class Hr(SelfClosingTag):
+    tag = u"hr"
+
+
+class Br(SelfClosingTag):
+    tag = u"br"
