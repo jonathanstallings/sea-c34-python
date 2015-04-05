@@ -109,7 +109,23 @@ class Br(SelfClosingTag):
 class A(OneLineTag):
     tag = u"a"
 
-    def __init__(self, link, content, **kwargs):
+    def __init__(self, link, content=None, **kwargs):
         self.link = link
         Element.__init__(self, content, href=link, **kwargs)
 
+
+class Ul(Element):
+    tag = u"ul"
+
+
+class Li(Element):
+    tag = u"li"
+
+
+class H(OneLineTag):
+    def __init__(self, level, content=None, **kwargs):
+        self.tag = u"h{level}".format(level=level)
+        Element.__init__(self, content, **kwargs)
+
+
+        
