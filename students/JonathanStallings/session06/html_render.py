@@ -14,8 +14,12 @@ class Element(object):
     tag = u"html"
     indent = u"    "
 
-    def __init__(self, content=None):
+    def __init__(self, content=None, **kwargs):  # Can't pass 'class' attr
         self.children = [content] if content else []
+        self.attributes = kwargs
+        self.attr = u""
+        for key, value in self.attributes.items():  # Consider alt method.
+            self.attr += u' {k}="{v}"'.format(k=key, v=value)
 
     def append(self, content):
         """Append content to element."""
@@ -24,7 +28,8 @@ class Element(object):
     def render(self, file_out, ind=u""):
         """Render the element and children into HTML."""
         file_out.write(
-            u"{indent}<{tag}>\n".format(indent=ind, tag=self.tag)
+            u"{indent}<{tag}{attr}>\n"
+            .format(indent=ind, tag=self.tag, attr=self.attr)
         )
         for child in self.children:
             try:
@@ -43,7 +48,8 @@ class OneLineTag(Element):
     """Override default rendering in favor of one-line output."""
     def render(self, file_out, ind=u""):
         file_out.write(
-            u"{indent}<{tag}>".format(indent=ind, tag=self.tag)
+            u"{indent}<{tag}{attr}>"
+            .format(indent=ind, tag=self.tag, attr=self.attr)
         )
         for child in self.children:
             try:
