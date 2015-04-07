@@ -3,25 +3,25 @@
 
 
 class Super1(object):
-    """Init Super1."""
+    """A test superclass."""
     def __init__(self, x):
         self.x = x
 
 
 class Super2(object):
-    """Init Super2"""
+    """A test superclass."""
     def __init__(self, y):
         self.y = y
 
 
 class Super3(object):
-    """Init Super 3."""
+    """A test superclass."""
     def __init__(self, z):
         self.z = z
 
 
 class SubClass(Super1, Super2, Super3):
-    """Init Subclass with multiple inheritance."""
+    """A test subclass with multiple inheritance."""
     def __init__(self, name, x, y, z):
         self.name = name
         Super1.__init__(self, x)
