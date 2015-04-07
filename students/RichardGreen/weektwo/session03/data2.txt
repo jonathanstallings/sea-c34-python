@@ -1,0 +1,28 @@
+Note Since different operating systems have different path name conventions, there are several versions of this module in the standard library. The os.path module is always the path module suitable for the operating system Python is running on, and therefore usable for local paths. However, you can also import and use the individual modules if you want to manipulate a path that is always in one of the different formats. They all have the same interface:
+posixpath for UNIX-style paths
+ntpath for Windows paths
+macpath for old-style MacOS paths
+os2emxpath for OS/2 EMX paths
+os.path.abspath(path)
+Return a normalized absolutized version of the pathname path. On most platforms, this is equivalent to calling the function normpath() as follows: normpath(join(os.getcwd(), path)).
+
+New in version 1.5.2.
+
+os.path.basename(path)
+Return the base name of pathname path. This is the second element of the pair returned by passing path to the function split(). Note that the result of this function is different from the Unix basename program; where basename for '/foo/bar/' returns 'bar', the basename() function returns an empty string ('').
+
+os.path.commonprefix(list)
+Return the longest path prefix (taken character-by-character) that is a prefix of all paths in list. If list is empty, return the empty string (''). Note that this may return invalid paths because it works a character at a time.
+
+os.path.dirname(path)
+Return the directory name of pathname path. This is the first element of the pair returned by passing path to the function split().
+
+os.path.exists(path)
+Return True if path refers to an existing path. Returns False for broken symbolic links. On some platforms, this function may return False if permission is not granted to execute os.stat() on the requested file, even if the path physically exists.
+
+os.path.lexists(path)
+Return True if path refers to an existing path. Returns True for broken symbolic links. Equivalent to exists() on platforms lacking os.lstat().
+
+New in version 2.4.
+
+os.path.expanduser(path)

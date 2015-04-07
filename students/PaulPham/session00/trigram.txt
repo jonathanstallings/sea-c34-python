@@ -1,0 +1,18 @@
+# Design for a trigram dictionary building
+
+open the txt file
+
+read the lines, concatenate them
+
+split into words on whitespace
+store into a list word_list
+
+create empty dictionary D
+
+for each word in word_list
+    a = word
+    b = next word
+    c = next next word
+    Add item to D
+        key: tuple (a,b,c)
+        value: ????

@@ -1,46 +1,35 @@
-#!/usr/bin/python
-
-'''This file outlines examples of four different error functions. Name,
-Type, Syntax,and Attribute. Their inputs are either an integer, str, or object.
-The functions will produce errors instead of print statements'''
-
-
-def NameE(a):
-    # here we get a name error because we are attempting to access a variable
-    # that doesnt exist
-    print(y)
+#!/usr/bin/env python
+"""breakme.py
+Examples of the most common Exceptions.
+There are, of course almost infinite ways to do this!
+"""
 
 
-def TypeE(b):
-    # here we get a type error because we can not perform math on a str object
-    b = 2
-    print('b' + b)
+def name_error():
+    return name_errror()  # A typo is a common source of a name error.
 
 
-def SyntaxE(c):
-    # we receive this error because we attempt a variable assignment and print
-    # statement without the proper syntax
-    if c == 7 print(c)
+def type_error(i, s):
+    return i + s  # if you pass and int and string in, you'll get a Type Error
 
 
-def AttributeE(object):
-    # we create this object but receive the error (below) because we are
-    # attempting to access an attribute that does not exist.
-    class Zero_attributes(object):
-        pass
+def attribute_error(i):
+    return i.append(4)  # Try to use a method from math that doesn't exist
 
-if __name__ == '__main__':
 
-    # Test a name error
-    NameE(5)
+def syntax_error(a):
+    return a = 5 + + 4
 
-    # Test a Type error
-    TypeE(b)
+# call the functions to get the errors:
+# the interpreter stops when you hit an error, so you need to uncomment
+# one at a time.
 
-    # Test a syntax error
-    SyntaxE(c)
+# name_error()
 
-    # Test Attribute Error
+# type_error(3, '4')
 
-    o = Zero_attributes()
-    print o.an_attribute
+x = 8
+
+print attribute_error(x)
+
+# syntax_error()

@@ -1,8 +1,7 @@
-'''Lets make a sequence of numbers to iterate through'''
+'''Lets make a sequence of numbers to iterate through.
+   Next lets make a string of characters'''
 
 nums = range(25)
-
-'''Next lets make a string of characters'''
 
 s = 'a b c d e f g h i j k l m n o p'
 

@@ -1,0 +1,23 @@
+open text file
+fo = open("foo.txt", "wb")
+
+
+read the lines, concatenate them
+
+split into words on whitespace
+
+store into a list word_list
+
+a = current word
+
+b = current word, next
+
+c = (u " " next)
+)
+
+new Dict D
+
+add item to D key (a,b,c )
+
+store word list into a tuple
+

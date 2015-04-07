@@ -1,0 +1,5 @@
+Average	Donors Names	Number	Totals
+500.9	Guy Ritchie	1	500.9
+575.25	Gene Simmons	2	1150.5
+12	Julie Andrews	2	25
+150.0	Doug Peters	1	150.0
