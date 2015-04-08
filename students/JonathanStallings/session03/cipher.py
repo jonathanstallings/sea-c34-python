@@ -32,9 +32,9 @@ def encrypt(message):
         cipher_char = cipher_list[index]
         cipher_text += cipher_char
 
-    print cipher_text
+    return cipher_text
 
-encrypt(message_text)
+# encrypt(message_text)
 
 
 def decrypt(cipher):
@@ -46,6 +46,6 @@ def decrypt(cipher):
         message_char = alphabet_list[index]
         message_text += message_char
 
-    print message_text
+    return message_text
 
-decrypt(cipher_text)
+# decrypt(cipher_text)
