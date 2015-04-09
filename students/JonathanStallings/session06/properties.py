@@ -19,8 +19,8 @@ class PropClass(object):
 
 
 foo = PropClass(10)
-print(foo.x)
-print(foo.__doc__)
+print(foo._x)
+print(foo._x.__doc__)
 
-# result: The docstring under the class declaration is returned.
+# result: The docstring under @property is not accessible in this way.
 
